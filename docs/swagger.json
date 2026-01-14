@@ -1,7 +1,75 @@
 {
     "swagger": "2.0",
     "info": {
-        "contact": {}
+        "description": "API de ejemplo con Swagger en Go",
+        "title": "SwaggerGoProyect API",
+        "contact": {},
+        "version": "1.0"
     },
-    "paths": {}
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/user": {
+            "get": {
+                "description": "Retorna un usuario de ejemplo",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Obtener usuario",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.User"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "description": "Retorna un usuario de ejemplo basado en el ID proporcionado",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Obtener usuario por ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.User"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handlers.User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
 }

@@ -1,4 +1,49 @@
+basePath: /
+definitions:
+  handlers.User:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+host: localhost:8080
 info:
   contact: {}
-paths: {}
+  description: API de ejemplo con Swagger en Go
+  title: SwaggerGoProyect API
+  version: "1.0"
+paths:
+  /user:
+    get:
+      description: Retorna un usuario de ejemplo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.User'
+      summary: Obtener usuario
+      tags:
+      - Users
+  /user/{id}:
+    get:
+      description: Retorna un usuario de ejemplo basado en el ID proporcionado
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.User'
+      summary: Obtener usuario por ID
+      tags:
+      - Users
 swagger: "2.0"
